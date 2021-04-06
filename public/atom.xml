@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Time-machine</title>
+  
+  <subtitle>To record time</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-08-18T12:51:43.555Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Xxxxxzh1</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>About 00</title>
+    <link href="http://yoursite.com/2020/about00/"/>
+    <id>http://yoursite.com/2020/about00/</id>
+    <published>2020-08-18T09:05:59.000Z</published>
+    <updated>2020-08-18T12:51:43.555Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Guys-see-you&quot;&gt;&lt;a href=&quot;#Guys-see-you&quot; class=&quot;headerlink&quot; title=&quot;Guys, see you!&quot;&gt;&lt;/a&gt;Guys, see you!&lt;/h1&gt;&lt;p&gt;不知不觉，我在零零已经度过了一年多的时间，始于巧合的机会，也收获了意外的力量与惊喜，现在到了该说再见的时候。我曾经是个轻微直楞的家伙，但好在大家悉心的开导、善意的提醒，让我学会了怎样把控心态，这也是我在零零最大的收获。洗墨、惜惺、相知曾是我的交友准则，却在这里拥有了志同道合的别样感动。感恩！&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="生活" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="零零" scheme="http://yoursite.com/tags/%E9%9B%B6%E9%9B%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面试积累</title>
+    <link href="http://yoursite.com/2020/findNewjodExperience/"/>
+    <id>http://yoursite.com/2020/findNewjodExperience/</id>
+    <published>2020-07-30T12:32:50.000Z</published>
+    <updated>2020-08-18T12:50:34.908Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;面试考查点积累&quot;&gt;&lt;a href=&quot;#面试考查点积累&quot; class=&quot;headerlink&quot; title=&quot;面试考查点积累&quot;&gt;&lt;/a&gt;面试考查点积累&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;一开始接触了很多小公司，攒了一周的面经，从中也get到了很多忘记、丢失的技能点。&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="工作" scheme="http://yoursite.com/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+    
+      <category term="工作" scheme="http://yoursite.com/tags/%E5%B7%A5%E4%BD%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>About Me</title>
+    <link href="http://yoursite.com/2020/aboutMe/"/>
+    <id>http://yoursite.com/2020/aboutMe/</id>
+    <published>2020-06-02T13:35:26.000Z</published>
+    <updated>2020-08-18T12:57:40.367Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;big&gt;姓名：郑智&lt;/big&gt;&lt;br&gt;&lt;big&gt;现居：杭州&lt;/big&gt;&lt;br&gt;&lt;big&gt;GitHub：&lt;a href=&quot;https://github.com/Xxxxxzh1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Xxxxxzh1&lt;/a&gt;&lt;/big&gt;&lt;br&gt;&lt;big&gt;微信：Xxxxxzh1-&lt;/big&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
