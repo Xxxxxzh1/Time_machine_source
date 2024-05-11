@@ -1,7 +1,7 @@
 ---
 title: About 00
 date: 2020-08-18 17:05:59
-tags: 零零
+tags: 生活
 categories: 生活
 ---
 

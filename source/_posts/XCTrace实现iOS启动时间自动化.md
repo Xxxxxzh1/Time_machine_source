@@ -14,8 +14,8 @@ categories: 工作
 
 **启动时间**
 - 当前「iOS启动时间」计算的是冷启动时间，在APP首次启动以后拿到初始帧渲染（Initial Frame Rendering）完成的时间点，其间APP启动大致分为以下几个过程：
-![](https://upload-images.jianshu.io/upload_images/18942784-38f6bbba8614d73b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+[![pkeCoCD.webp](https://s21.ax1x.com/2024/05/11/pkeCoCD.webp)](https://imgse.com/i/pkeCoCD)
 
 
 ---
@@ -46,7 +46,7 @@ categories: 工作
 - 对.trace文件进行解析，拿到对应的记录结构。
 `xcrun xctrace export --input ~/Downloads/test.trace --toc
 `
-![](https://upload-images.jianshu.io/upload_images/18942784-1c9eac2f38d17708.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+[![pkeC7gH.webp](https://s21.ax1x.com/2024/05/11/pkeC7gH.webp)](https://imgse.com/i/pkeC7gH)
 
 该步骤是为了拿到.trace文件中记录了哪些schema名（可以简单理解成.trace将所有数据以很多张表的形式进行记录，输出的schema就是每张表的名称），作为想要可视化的xpath输入。
 
@@ -56,11 +56,10 @@ categories: 工作
 
 - XML文件分析及取值。
 先用Instruments桌面端工具将记录的.trace文件打开。
-![](https://upload-images.jianshu.io/upload_images/18942784-65a023bcddfb095b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+[![pkeCT8e.webp](https://s21.ax1x.com/2024/05/11/pkeCT8e.webp)](https://imgse.com/i/pkeCT8e)
 
 观察发现在'Initial Frame Rendering'和'Running in the foreground'进程间有段空置时间，因此不能拿取'Running in the foreground'的开始时间，而是拿取'Initial Frame Rendering'的完成时间。
-![](https://upload-images.jianshu.io/upload_images/18942784-e8c7b6e02e8bba2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
+[![pkeC54O.webp](https://s21.ax1x.com/2024/05/11/pkeC54O.webp)](https://imgse.com/i/pkeC54O)
 只需要将该进程的开始时间'start-time'及'duration'相加即可。
 
 ---

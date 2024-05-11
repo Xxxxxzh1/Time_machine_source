@@ -77,6 +77,250 @@
     
     
     
+    <article id="post-团队协作规范" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C%E8%A7%84%E8%8C%83/"
+    >团队协作规范</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2024/%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C%E8%A7%84%E8%8C%83/" class="article-date">
+  <time datetime="2024-03-14T09:26:15.000Z" itemprop="datePublished">2024-03-14</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p><code>针对迭代流程整理可行性规范，让各角色配合更机敏，在保障质量的同时，达到从容发布的效果。</code></p>
+<h1 id="迭代流转图"><a href="#迭代流转图" class="headerlink" title="迭代流转图"></a>迭代流转图</h1><p><a href="https://imgse.com/i/pkeCG9g" target="_blank" rel="noopener"><img src="https://s21.ax1x.com/2024/05/11/pkeCG9g.png" alt="pkeCG9g.png"></a><br><code>关键流转点：需求稿评审、视觉稿交付</code></p>
+<hr>
+<h1 id="技术侧流程事项"><a href="#技术侧流程事项" class="headerlink" title="技术侧流程事项"></a>技术侧流程事项</h1><h2 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h2><ul>
+<li>技术方案评审需在介入开发前进行，由技术负责人拉齐</li>
+<li>对于多端需求预留合理的联调时间</li>
+<li>各端负责人建立对应版本，并将迭代需求拆分至各版本</li>
+</ul>
+<h2 id="提测流程"><a href="#提测流程" class="headerlink" title="提测流程"></a>提测流程</h2><ul>
+<li>QA需在提测日前一天派发冒烟案例至Task维度，预留1d的时间给开发冒烟</li>
+<li>提测日开发确认案例评审结果– 冒烟测试 – 走提测单至对应QA</li>
+<li>提测单晚于任务对应的提测日期，算做延期提测，影响Skynet团队质量分</li>
+<li>各端提测需在同一分支、同一环境，及早识别不同需求代码间的影响：</li>
+<li>服务端应用需提前将代码合并至同一分支（如release-x.x.x），部署至同一环境（如qa-xxx）</li>
+<li>客户端需提前将代码合并至同一分支进行打包</li>
+<li>前端应用需将代码部署至同一环境（由于代码合并是自动完成，暂不做同一分支要求）</li>
+</ul>
+<h2 id="测试流程"><a href="#测试流程" class="headerlink" title="测试流程"></a>测试流程</h2><ul>
+<li>QA需在测试首日完成冒烟相关案例的执行，冒烟不通过的任务单于开发确认后提测打回</li>
+<li>测试过程对所有问题进行记录，包含：服务端发布导致的问题、客户端崩溃问题、回归过程出现的问题</li>
+<li>针对大型需求需组织相关bugbash</li>
+<li>服务端发布日需执行回归CI，前端发布完成后，协同策划对此次迭代的需求进行线上走查</li>
+<li>客户端发布日进行P0级别的用例回归，配合观察线上崩溃数据</li>
+</ul>
+<h2 id="发布流程"><a href="#发布流程" class="headerlink" title="发布流程"></a>发布流程</h2><p>发布顺序依次为：服务端 -&gt; 前端 -&gt; 客户端，具体顺序视需求而定（例：部分前端需求需等客户端版本覆盖率上来后再进行发布）</p>
+<ul>
+<li><p>服务端：</p>
+<ul>
+<li>发布日前梳理应用依赖关系，整理发布顺序</li>
+<li>前置走建表申请，添加线上配置项</li>
+<li>将发布应用统一部署至回归环境，执行回归、预发CI</li>
+<li>CI通过后QA提交版本测试报告，当日16:00前走完发布审批流程</li>
+<li>发布过程需观察各应用抖动情况，以防出现问题及时回滚</li>
+</ul>
+</li>
+<li><p>前端：</p>
+<ul>
+<li>服务端发布完成后，前端进行线上发布流程</li>
+<li>发布完成后通知QA、策划进行线上走查</li>
+</ul>
+</li>
+<li><p>Android端：</p>
+<ul>
+<li>QA打release包进行回归测试，无问题后修改VersionCode打发布包</li>
+<li>开发对发布包进行checklist回归（开发侧自定）</li>
+<li>开发在线上–客户端配置中心完善线上配置项</li>
+<li>QA发版负责人进行overmind官网发布流程（更新标题&amp;文案需策划提供）</li>
+<li>待灰度过程结束，观察Corona、云捕、舆情数据决定是否替换包</li>
+<li>官网包稳定后通知策划+市场同学提审，并同步更改相应提审开关</li>
+</ul>
+</li>
+<li><p>iOS端：</p>
+<ul>
+<li>QA打TF行回归测试</li>
+<li>开发对TF包进行checklist回归（开发侧自定）</li>
+<li>开发在线上–客户端配置中心完善线上配置项</li>
+<li>iOS发版负责人进行TF包提审（更新标题&amp;文案需策划提供）</li>
+<li>待灰度过程结束，观察Corona、Firebase、舆情崩溃数据决定是否替换包</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="非常规事项"><a href="#非常规事项" class="headerlink" title="非常规事项"></a>非常规事项</h1><h2 id="需求变更"><a href="#需求变更" class="headerlink" title="需求变更"></a>需求变更</h2><ul>
+<li>需求变更策划应同步至开发&amp;QA侧，变动在需求稿文档同步</li>
+<li>PM评估迭代影响，是否排入视情况而定</li>
+</ul>
+<h2 id="需求插入"><a href="#需求插入" class="headerlink" title="需求插入"></a>需求插入</h2><ul>
+<li>对于插入需求，策划应同步至开发&amp;QA侧</li>
+<li>PM评估迭代影响，能否排入视情况而定</li>
+</ul>
+<h2 id="需求自测"><a href="#需求自测" class="headerlink" title="需求自测"></a>需求自测</h2><ul>
+<li>提测前QA给出相应用例，开发发布前应执行完成</li>
+<li>发布完成后需协同策划完成线上走查<br><code>开发自行承担的需求未及时同步QA需走自测流程or接受延期发布</code></li>
+</ul>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E4%BD%9C/" rel="tag">工作</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-埋点自动化" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/%E5%9F%8B%E7%82%B9%E8%87%AA%E5%8A%A8%E5%8C%96/"
+    >埋点自动化</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2022/%E5%9F%8B%E7%82%B9%E8%87%AA%E5%8A%A8%E5%8C%96/" class="article-date">
+  <time datetime="2022-07-30T12:32:50.000Z" itemprop="datePublished">2022-07-30</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p><code>背景：客户端埋点上报功能一旦出现问题，发布上线后会影响数据统计、市场投放等。因此在客户端发布pipeline中加入自动化步骤，用以验证该功能点，避免因小失大。</code></p>
+<h1 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h1><p><strong>通过埋点源数据接口拉取埋点日志，再进行数据提取+校验</strong></p>
+<ul>
+<li>接口入参：<ul>
+<li>resource – 需要查询的业务线</li>
+<li>userid – 用户userid</li>
+<li>begin – 开始时间点（时间戳精确到秒）</li>
+<li>end – 结束时间点（时间戳精确到秒）</li>
+<li>os – 终端类型</li>
+<li>page_size – 每页查询的数据量</li>
+<li>page_num – 查询的页数</li>
+<li>method – 固定为GET</li>
+</ul>
+</li>
+</ul>
+<h1 id="代码逻辑"><a href="#代码逻辑" class="headerlink" title="代码逻辑"></a>代码逻辑</h1><p><strong>数据获取</strong></p>
+<ul>
+<li>CI命令行运行变量为os、action，以传入python脚本中作为入参<ul>
+<li>​os为要校验的终端，可为：Android、iphone</li>
+<li>action为要校验的埋点action，可为：activeclient、click…（建议选择强校验点）</li>
+<li>数据量为单页10000条，防止数据分页产生数据无法验证</li>
+</ul>
+</li>
+</ul>
+<p><strong>结果判断</strong></p>
+<ul>
+<li>遍历接口返回的所有结果，是否存在action、os同时满足的日志</li>
+</ul>
+<p><strong>前置依赖</strong></p>
+<ul>
+<li>该步骤建议放在UI相关pipeline步骤之后，前置自动化用户操作后的埋点信息可共用，无需手动打点</li>
+</ul>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E4%BD%9C/" rel="tag">工作</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-XCTrace实现iOS启动时间自动化" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -127,8 +371,9 @@
 </blockquote>
 <p><strong>启动时间</strong></p>
 <ul>
-<li>当前「iOS启动时间」计算的是冷启动时间，在APP首次启动以后拿到初始帧渲染（Initial Frame Rendering）完成的时间点，其间APP启动大致分为以下几个过程：<br><img src="https://upload-images.jianshu.io/upload_images/18942784-38f6bbba8614d73b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>当前「iOS启动时间」计算的是冷启动时间，在APP首次启动以后拿到初始帧渲染（Initial Frame Rendering）完成的时间点，其间APP启动大致分为以下几个过程：</li>
 </ul>
+<p><a href="https://imgse.com/i/pkeCoCD" target="_blank" rel="noopener"><img src="https://s21.ax1x.com/2024/05/11/pkeCoCD.webp" alt="pkeCoCD.webp"></a></p>
 <hr>
 <h1 id="探究过程"><a href="#探究过程" class="headerlink" title="探究过程"></a>探究过程</h1><p><strong>有关iOS启动时间的探究，初始方向有以下几种：</strong></p>
 <ul>
@@ -161,18 +406,17 @@
 <ul>
 <li><p>XCTrace生成.trace文件shell命令<br><code>xcrun xctrace record --template &#39;App Launch&#39; --device  &#39;对应的deciceID&#39; --output ~/Downloads/test.trace --launch XXXX.app&#39;</code><br>该命令中–template参数为想要记录的模版，为了计算启动时间我选择的是’App Launch’。–device参数为Iphone的UDID，当然也可以选择Iphone的设备名称。</p>
 </li>
-<li><p>对.trace文件进行解析，拿到对应的记录结构。<br><code>xcrun xctrace export --input ~/Downloads/test.trace --toc</code><br><img src="https://upload-images.jianshu.io/upload_images/18942784-1c9eac2f38d17708.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<li><p>对.trace文件进行解析，拿到对应的记录结构。<br><code>xcrun xctrace export --input ~/Downloads/test.trace --toc</code><br><a href="https://imgse.com/i/pkeC7gH" target="_blank" rel="noopener"><img src="https://s21.ax1x.com/2024/05/11/pkeC7gH.webp" alt="pkeC7gH.webp"></a></p>
 </li>
 </ul>
 <p>该步骤是为了拿到.trace文件中记录了哪些schema名（可以简单理解成.trace将所有数据以很多张表的形式进行记录，输出的schema就是每张表的名称），作为想要可视化的xpath输入。</p>
 <ul>
 <li><p>XCTrace解析.trace文件，输出可视化。<br><code>xcrun xctrace export --input ~/Downloads/test.trace --xpath &#39;/trace-toc/run[@number=&quot;1&quot;]/data/table[@schema=&quot;life-cycle-period&quot;]&#39; &gt;&gt; test.xml</code><br>该步骤的schema即是上一步拿到的模式名，我选取的是’life-cycle-period’。</p>
 </li>
-<li><p>XML文件分析及取值。<br>先用Instruments桌面端工具将记录的.trace文件打开。<br><img src="https://upload-images.jianshu.io/upload_images/18942784-65a023bcddfb095b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<li><p>XML文件分析及取值。<br>先用Instruments桌面端工具将记录的.trace文件打开。<br><a href="https://imgse.com/i/pkeCT8e" target="_blank" rel="noopener"><img src="https://s21.ax1x.com/2024/05/11/pkeCT8e.webp" alt="pkeCT8e.webp"></a></p>
 </li>
 </ul>
-<p>观察发现在’Initial Frame Rendering’和’Running in the foreground’进程间有段空置时间，因此不能拿取’Running in the foreground’的开始时间，而是拿取’Initial Frame Rendering’的完成时间。<br><img src="https://upload-images.jianshu.io/upload_images/18942784-e8c7b6e02e8bba2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>只需要将该进程的开始时间’start-time’及’duration’相加即可。</p>
+<p>观察发现在’Initial Frame Rendering’和’Running in the foreground’进程间有段空置时间，因此不能拿取’Running in the foreground’的开始时间，而是拿取’Initial Frame Rendering’的完成时间。<br><a href="https://imgse.com/i/pkeC54O" target="_blank" rel="noopener"><img src="https://s21.ax1x.com/2024/05/11/pkeC54O.webp" alt="pkeC54O.webp"></a><br>只需要将该进程的开始时间’start-time’及’duration’相加即可。</p>
 <hr>
 <h1 id="待改进点"><a href="#待改进点" class="headerlink" title="待改进点"></a>待改进点</h1><ol>
 <li><p>由于苹果爸爸的权限管控，目前只能运用于未重签名的包</p>
@@ -264,7 +508,7 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9B%B6%E9%9B%B6/" rel="tag">零零</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li></ul>
 
 
     </footer>
@@ -281,7 +525,7 @@
 
 </article>
     
-    <article id="post-findNewjodExperience" class="article article-type-post" itemscope
+    <article id="post-面试积累" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -289,7 +533,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/findNewjodExperience/"
+  <a class="article-title" href="/2020/%E9%9D%A2%E8%AF%95%E7%A7%AF%E7%B4%AF/"
     >面试积累</a> 
 </h2>
  
@@ -299,7 +543,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/findNewjodExperience/" class="article-date">
+      <a href="/2020/%E9%9D%A2%E8%AF%95%E7%A7%AF%E7%B4%AF/" class="article-date">
   <time datetime="2020-07-30T12:32:50.000Z" itemprop="datePublished">2020-07-30</time>
 </a>
       
@@ -323,7 +567,7 @@
       
       <h1 id="面试考查点积累"><a href="#面试考查点积累" class="headerlink" title="面试考查点积累"></a>面试考查点积累</h1><pre><code>一开始接触了很多小公司，攒了一周的面经，从中也get到了很多忘记、丢失的技能点。</code></pre>
       
-      <a class="article-more-link" href="/2020/findNewjodExperience/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/%E9%9D%A2%E8%AF%95%E7%A7%AF%E7%B4%AF/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -375,6 +619,10 @@
   <time datetime="2020-06-02T13:35:26.000Z" itemprop="datePublished">2020-06-02</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+  </div>
+
       
       
       
@@ -404,6 +652,8 @@
     <footer class="article-footer">
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li></ul>
+
 
     </footer>
 

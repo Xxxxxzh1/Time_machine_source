@@ -119,8 +119,9 @@
 </blockquote>
 <p><strong>启动时间</strong></p>
 <ul>
-<li>当前「iOS启动时间」计算的是冷启动时间，在APP首次启动以后拿到初始帧渲染（Initial Frame Rendering）完成的时间点，其间APP启动大致分为以下几个过程：<br><img src="https://upload-images.jianshu.io/upload_images/18942784-38f6bbba8614d73b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>当前「iOS启动时间」计算的是冷启动时间，在APP首次启动以后拿到初始帧渲染（Initial Frame Rendering）完成的时间点，其间APP启动大致分为以下几个过程：</li>
 </ul>
+<p><a href="https://imgse.com/i/pkeCoCD" target="_blank" rel="noopener"><img src="https://s21.ax1x.com/2024/05/11/pkeCoCD.webp" alt="pkeCoCD.webp"></a></p>
 <hr>
 <h1 id="探究过程"><a href="#探究过程" class="headerlink" title="探究过程"></a>探究过程</h1><p><strong>有关iOS启动时间的探究，初始方向有以下几种：</strong></p>
 <ul>
@@ -153,18 +154,17 @@
 <ul>
 <li><p>XCTrace生成.trace文件shell命令<br><code>xcrun xctrace record --template &#39;App Launch&#39; --device  &#39;对应的deciceID&#39; --output ~/Downloads/test.trace --launch XXXX.app&#39;</code><br>该命令中–template参数为想要记录的模版，为了计算启动时间我选择的是’App Launch’。–device参数为Iphone的UDID，当然也可以选择Iphone的设备名称。</p>
 </li>
-<li><p>对.trace文件进行解析，拿到对应的记录结构。<br><code>xcrun xctrace export --input ~/Downloads/test.trace --toc</code><br><img src="https://upload-images.jianshu.io/upload_images/18942784-1c9eac2f38d17708.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<li><p>对.trace文件进行解析，拿到对应的记录结构。<br><code>xcrun xctrace export --input ~/Downloads/test.trace --toc</code><br><a href="https://imgse.com/i/pkeC7gH" target="_blank" rel="noopener"><img src="https://s21.ax1x.com/2024/05/11/pkeC7gH.webp" alt="pkeC7gH.webp"></a></p>
 </li>
 </ul>
 <p>该步骤是为了拿到.trace文件中记录了哪些schema名（可以简单理解成.trace将所有数据以很多张表的形式进行记录，输出的schema就是每张表的名称），作为想要可视化的xpath输入。</p>
 <ul>
 <li><p>XCTrace解析.trace文件，输出可视化。<br><code>xcrun xctrace export --input ~/Downloads/test.trace --xpath &#39;/trace-toc/run[@number=&quot;1&quot;]/data/table[@schema=&quot;life-cycle-period&quot;]&#39; &gt;&gt; test.xml</code><br>该步骤的schema即是上一步拿到的模式名，我选取的是’life-cycle-period’。</p>
 </li>
-<li><p>XML文件分析及取值。<br>先用Instruments桌面端工具将记录的.trace文件打开。<br><img src="https://upload-images.jianshu.io/upload_images/18942784-65a023bcddfb095b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<li><p>XML文件分析及取值。<br>先用Instruments桌面端工具将记录的.trace文件打开。<br><a href="https://imgse.com/i/pkeCT8e" target="_blank" rel="noopener"><img src="https://s21.ax1x.com/2024/05/11/pkeCT8e.webp" alt="pkeCT8e.webp"></a></p>
 </li>
 </ul>
-<p>观察发现在’Initial Frame Rendering’和’Running in the foreground’进程间有段空置时间，因此不能拿取’Running in the foreground’的开始时间，而是拿取’Initial Frame Rendering’的完成时间。<br><img src="https://upload-images.jianshu.io/upload_images/18942784-e8c7b6e02e8bba2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>只需要将该进程的开始时间’start-time’及’duration’相加即可。</p>
+<p>观察发现在’Initial Frame Rendering’和’Running in the foreground’进程间有段空置时间，因此不能拿取’Running in the foreground’的开始时间，而是拿取’Initial Frame Rendering’的完成时间。<br><a href="https://imgse.com/i/pkeC54O" target="_blank" rel="noopener"><img src="https://s21.ax1x.com/2024/05/11/pkeC54O.webp" alt="pkeC54O.webp"></a><br>只需要将该进程的开始时间’start-time’及’duration’相加即可。</p>
 <hr>
 <h1 id="待改进点"><a href="#待改进点" class="headerlink" title="待改进点"></a>待改进点</h1><ol>
 <li><p>由于苹果爸爸的权限管控，目前只能运用于未重签名的包</p>
@@ -257,6 +257,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/2022/%E5%9F%8B%E7%82%B9%E8%87%AA%E5%8A%A8%E5%8C%96/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            埋点自动化
+          
+        </div>
+      </a>
     
     
       <a href="/2020/about00/" class="article-nav-link">
